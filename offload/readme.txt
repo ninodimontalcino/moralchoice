@@ -1,0 +1,1 @@
+Offloading directory for large models accessed through the Hugging-Face Hub

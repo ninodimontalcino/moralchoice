@@ -2,26 +2,22 @@
 
 **Authors:** [Nino Scherrer*](https://ninodimontalcino.github.io/), [Claudia Shi*](https://www.claudiajshi.com/), [Amir Feder](https://www.amirfeder.com/) and [David Blei](http://www.cs.columbia.edu/~blei/)
 
-**Paper:** [Evaluating the Moral Beliefs Encoded in LLMs](https://arxiv.org/???).
+**Paper:** [Evaluating the Moral Beliefs Encoded in LLMs](https://arxiv.org/abs/2307.14324).
 
 **Dataset:** [https://huggingface.co/datasets/ninoscherrer/moralchoice](https://huggingface.co/datasets/ninoscherrer/moralchoice)
 
 
-```
-🚧 Code will be released shortly! 🚧
-```
-
 ![figure1](fig/Figure1.png)
 
 ```bibtex
-  @Article{scherrer2023moralchoice,
-      title={Evaluating the Moral Beliefs Encoded in LLMs},
-      author={Scherrer Nino and Shi Claudia and Feder Amir and Blei David},
-      year={2023},
-      journal={arXiv:????},
-  }
+@inproceedings{scherrer2023evaluating,
+  title={Evaluating the Moral Beliefs Encoded in LLMs},
+  author={Nino Scherrer and Claudia Shi and Amir Feder and David Blei},
+  booktitle={Thirty-seventh Conference on Neural Information Processing Systems},
+  year={2023},
+  url={https://openreview.net/forum?id=O06z2G18me}
+}
 ```
-
 
 ## tl;dr
 This paper presents a case study on the design, administration, post-processing,  and evaluation of surveys on large language models (LLMs). It comprises two components:
@@ -48,6 +44,7 @@ We find that:
     - [Supported Models](#supported-models)
     - [Adding New Models](#adding-new-models)
   - [Adding More Question Templates](#adding-more-question-templates)
+  - [🚧 Limitation 🚧: Semantic Matching](#-limitation--semantic-matching)
   
 
 
@@ -71,7 +68,7 @@ All available data is also shared through HuggingFace: [https://huggingface.co/d
 
 ## Model Evaluations
 
-You can evaluate **supported models** by running:
+You can run a new evaluation on **supported models** by running:
 ```bash
 >> python -m src.evaluate
     --experiment-name "moraltest" 
@@ -89,11 +86,8 @@ Finally, you can collect and aggregate all results into a single csv per model u
     --dataset "low" 
 ```
 
-
 ## Visualizations
-
-- Google Colab will be provided shortly along the survey responses
-
+- Jupyter Notebooks to be uploaded
 
 ## Models
 
@@ -136,7 +130,8 @@ Finally, you can collect and aggregate all results into a single csv per model u
       - `google/flan-t5-large`
       - `google/flan-t5-xl`
       - `google/flan-t5-xxl`
-    - PaLM 2 (API): `google/text-bison-001`
+    - PaLM 2 (API):
+      -  `google/text-bison-001`
 - **Meta** 
     - OPT-IML-Regular (HF-Hub): 
       - `meta/opt-iml-regular-small` 
@@ -170,3 +165,8 @@ You can add further question templates to our evaluation procedure by:
 **Note:** 
 - To retrieve common answer patterns for a specific question template, it is beneficial to generate a set of answers and then cluster common-prefixes.
 - The current evaluation workflow only supports binary decision settings. But the pipeline can be extended to more options if needed.
+
+## 🚧 Limitation 🚧: Semantic Matching
+To map LLM outputs (i.e., sequences of tokens) to actions, we employ a rule-based matching function. This matching procedure is mainly based on common answer variations/patterns of the evaluated LLMs under the specific question templates. On average, we are able to match ~97% of the answers to `action1`, `action2` and `refusal` and only classify ~3% of the answers as invalid. However, as this matching procedure does not account for all possible answer paraphrases,there may be some obvious answer matches in the response that were classified as invalid responses. 
+
+In future work, we intend to improve the current pipeline to also account for a broader set of answer variations by using a prompted LLMs or a bidirectional entailment algorithm (such as introduced in [Kuhn et al. 2023](https://arxiv.org/abs/2302.09664)) for matching.
