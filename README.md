@@ -2,7 +2,7 @@
 
 **Authors:** [Nino Scherrer*](https://ninodimontalcino.github.io/), [Claudia Shi*](https://www.claudiajshi.com/), [Amir Feder](https://www.amirfeder.com/) and [David Blei](http://www.cs.columbia.edu/~blei/)
 
-**Paper:** [Evaluating the Moral Beliefs Encoded in LLMs](https://arxiv.org/abs/2307.14324).
+**Paper:** [Evaluating the Moral Beliefs Encoded in LLMs](https://arxiv.org/abs/2307.14324) (NeurIPS 2023 - Spotlight).
 
 **Dataset:** [https://huggingface.co/datasets/ninoscherrer/moralchoice](https://huggingface.co/datasets/ninoscherrer/moralchoice)
 
